@@ -8,7 +8,7 @@ class Ball {
     this.velocity = velocity;
     this.position = position;
     radius = r;
-    mass = PI * pow(r, 2);
+    mass = (4.0f / 3.0f) * PI * pow(r, 3);
   }
   
   void update() {
@@ -26,7 +26,21 @@ class Ball {
     if (position.y <= 0) {
       velocity.y *= -1;
     }
+    if (position.z >= 1024) {
+      velocity.z *= -1;
+    }
+    if (position.z <= 0) {
+      velocity.z *= -1;
+    }
+  }
+  
+  void draw() {
     
-    circle(position.x, position.y, radius * 2);
+    pushMatrix();
+    translate(position.x, position.y, position.z);
+    noStroke();
+    fill(220);
+    sphere(radius);
+    popMatrix();
   }
 }

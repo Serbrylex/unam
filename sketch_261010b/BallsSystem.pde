@@ -2,15 +2,25 @@ class BallsSystem {
   ArrayList<Ball> balls;
   int dimentions;
   int velocity = 10;
+  float e = 1;
   
   BallsSystem(int n, int dim) {
     balls = new ArrayList<Ball>();
     dimentions = dim;
     
     for (int i = 0; i < n; i++) {
+      float r = random(1, 10);
       Ball b = new Ball(
-        new PVector(random(1, dimentions - 1), random(1, dimentions - 1)),
-        new PVector(random(-1 * velocity, velocity), random(-1 * velocity, velocity)),
+        new PVector(
+          random(r, r + 5),
+          random(r, r + 5),
+          random(r, r + 5)
+        ),
+        new PVector(
+          random(r, r + 5),
+          random(r, r + 5),
+          random(r, r + 5)
+        ),
         random(10, 50) // radius
       );
       balls.add(b);
@@ -37,7 +47,7 @@ class BallsSystem {
     
     PVector deltaVelocity = PVector.sub(a.velocity, b.velocity);
     
-    float massFactor = (2.0f * b.mass) / (a.mass + b.mass);
+    float massFactor = ((1.0f + e) * b.mass) / (a.mass + b.mass);
     float numerador = PVector.dot(deltaVelocity, deltaPosition);
     //posicion puede ser igual y el producto punto dar cero
     deltaPosition.mult(numerador/distanceSquared);
@@ -76,6 +86,10 @@ class BallsSystem {
           CalculateNewVelocities(a, b);
         }
       }
+    }
+    
+    for (Ball b : balls) {
+      b.draw();
     }
   }
 }

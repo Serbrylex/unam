@@ -1,7 +1,7 @@
 BallsSystem bs;
 
 void setup() {
-  size(1024, 1024, P2D);
+  size(1024, 1024, P3D);
   orientation(LANDSCAPE);
   bs = new BallsSystem(20, 1024);
 }
