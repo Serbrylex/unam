@@ -1,9 +1,10 @@
 BallsSystem bs;
 
 void setup() {
-  size(1024, 1024, P3D);
+  fullScreen(P3D);
+  //size(1024, 720, P3D);
   orientation(LANDSCAPE);
-  bs = new BallsSystem(20, 1024);
+  bs = new BallsSystem(200);
 }
 
 void draw() {
